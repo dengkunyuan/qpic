@@ -18,11 +18,11 @@ import itertools
 
 import torch
 
-import util.misc as utils
-from datasets.coco_eval import CocoEvaluator
-from datasets.panoptic_eval import PanopticEvaluator
-from datasets.hico_eval import HICOEvaluator
-from datasets.vcoco_eval import VCOCOEvaluator
+import qpic.util.misc as utils
+from qpic.datasets.coco_eval import CocoEvaluator
+from qpic.datasets.panoptic_eval import PanopticEvaluator
+from qpic.datasets.hico_eval import HICOEvaluator
+from qpic.datasets.vcoco_eval import VCOCOEvaluator
 
 
 def train_one_epoch(model: torch.nn.Module, criterion: torch.nn.Module,

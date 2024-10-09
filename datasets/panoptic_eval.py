@@ -8,7 +8,7 @@
 import json
 import os
 
-import util.misc as utils
+import qpic.util.misc as utils
 
 try:
     from panopticapi.evaluation import pq_compute

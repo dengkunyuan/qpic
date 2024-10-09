@@ -22,11 +22,12 @@ import torch
 import torch.distributed as dist
 from torch import Tensor
 
-# needed due to empty tensor bug in pytorch and torchvision 0.5
-import torchvision
-if float(torchvision.__version__[:3]) < 0.7:
-    from torchvision.ops import _new_empty_tensor
-    from torchvision.ops.misc import _output_size
+# 这段代码在IL环境下报错，而且DETR库最新的版本已经没有这段代码了
+# # needed due to empty tensor bug in pytorch and torchvision 0.5
+# import torchvision
+# if float(torchvision.__version__[:3]) < 0.7:
+#     from torchvision.ops import _new_empty_tensor
+#     from torchvision.ops.misc import _output_size
 
 
 class SmoothedValue(object):

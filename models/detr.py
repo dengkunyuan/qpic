@@ -12,17 +12,17 @@ import torch
 import torch.nn.functional as F
 from torch import nn
 
-from util import box_ops
-from util.misc import (NestedTensor, nested_tensor_from_tensor_list,
+from qpic.util import box_ops
+from qpic.util.misc import (NestedTensor, nested_tensor_from_tensor_list,
                        accuracy, get_world_size, interpolate,
                        is_dist_avail_and_initialized)
 
-from .backbone import build_backbone
-from .matcher import build_matcher
-from .segmentation import (DETRsegm, PostProcessPanoptic, PostProcessSegm,
+from qpic.models.backbone import build_backbone
+from qpic.models.matcher import build_matcher
+from qpic.models.segmentation import (DETRsegm, PostProcessPanoptic, PostProcessSegm,
                            dice_loss, sigmoid_focal_loss)
-from .hoi import (DETRHOI, SetCriterionHOI, PostProcessHOI)
-from .transformer import build_transformer
+from qpic.models.hoi import (DETRHOI, SetCriterionHOI, PostProcessHOI)
+from qpic.models.transformer import build_transformer
 
 
 class DETR(nn.Module):
