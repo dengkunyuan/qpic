@@ -5,8 +5,12 @@
 # Modified from DETR (https://github.com/facebookresearch/detr)
 # Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved
 # ------------------------------------------------------------------------
-from qpic.models.detr import build
 
+# # QPIC is running as the main module.
+# from .detr import build
+
+# QPIC is running as a submodule.
+from qpic.models.detr import build
 
 def build_model(args):
     return build(args)

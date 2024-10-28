@@ -22,8 +22,11 @@ from pycocotools.cocoeval import COCOeval
 from pycocotools.coco import COCO
 import pycocotools.mask as mask_util
 
-from qpic.util.misc import all_gather
+# # QPIC is running as the main module.
+# from util.misc import all_gather
 
+# QPIC is running as a submodule.
+from qpic.util.misc import all_gather
 
 class CocoEvaluator(object):
     def __init__(self, coco_gt, iou_types):

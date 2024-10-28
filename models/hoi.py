@@ -8,6 +8,13 @@ import torch
 from torch import nn
 import torch.nn.functional as F
 
+# # QPIC is running as the main module.
+# from util.box_ops import box_cxcywh_to_xyxy, generalized_box_iou
+# from util.misc import (NestedTensor, nested_tensor_from_tensor_list,
+#                        accuracy, get_world_size, interpolate,
+#                        is_dist_avail_and_initialized)
+
+# QPIC is running as a submodule.
 from qpic.util.box_ops import box_cxcywh_to_xyxy, generalized_box_iou
 from qpic.util.misc import (NestedTensor, nested_tensor_from_tensor_list,
                        accuracy, get_world_size, interpolate,
@@ -49,6 +56,7 @@ class DETRHOI(nn.Module):
             out['aux_outputs'] = self._set_aux_loss(outputs_obj_class, outputs_verb_class,
                                                     outputs_sub_coord, outputs_obj_coord)
         return out, hs[-1]
+        # return out
 
     @torch.jit.unused
     def _set_aux_loss(self, outputs_obj_class, outputs_verb_class, outputs_sub_coord, outputs_obj_coord):

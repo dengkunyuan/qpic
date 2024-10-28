@@ -52,7 +52,7 @@ class HICOEvaluator():
 
         self.gts = []
         for img_gts in gts:
-            img_gts = {k: v.to('cpu').numpy() for k, v in img_gts.items() if k != 'id'}
+            img_gts = {k: (v.to('cpu').numpy() if k not in ['id', 'filename'] else v) for k, v in img_gts.items()}
             self.gts.append({
                 'annotations': [{'bbox': bbox, 'category_id': label} for bbox, label in zip(img_gts['boxes'], img_gts['labels'])],
                 'hoi_annotation': [{'subject_id': hoi[0], 'object_id': hoi[1], 'category_id': hoi[2]} for hoi in img_gts['hois']]
@@ -132,9 +132,9 @@ class HICOEvaluator():
         m_ap_non_rare = np.mean(list(non_rare_ap.values()))
         m_max_recall = np.mean(list(max_recall.values()))
 
-        print('--------------------')
-        print('mAP: {} mAP rare: {}  mAP non-rare: {}  mean max recall: {}'.format(m_ap, m_ap_rare, m_ap_non_rare, m_max_recall))
-        print('--------------------')
+        # print('--------------------')
+        # print('mAP: {} mAP rare: {}  mAP non-rare: {}  mean max recall: {}'.format(m_ap, m_ap_rare, m_ap_non_rare, m_max_recall))
+        # print('--------------------')
 
         return {'mAP': m_ap, 'mAP rare': m_ap_rare, 'mAP non-rare': m_ap_non_rare, 'mean max recall': m_max_recall}
 

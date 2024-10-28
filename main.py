@@ -16,11 +16,19 @@ import numpy as np
 import torch
 from torch.utils.data import DataLoader, DistributedSampler
 
-import datasets
-import util.misc as utils
-from datasets import build_dataset, get_coco_api_from_dataset
-from engine import evaluate, train_one_epoch, evaluate_hoi
-from models import build_model
+# # QPIC is running as the main module.
+# import datasets
+# import util.misc as utils
+# from datasets import build_dataset, get_coco_api_from_dataset
+# from engine import evaluate, train_one_epoch, evaluate_hoi
+# from models import build_model
+
+# QPIC is running as a submodule.
+import qpic.datasets as datasets
+import qpic.util.misc as utils
+from qpic.datasets import build_dataset, get_coco_api_from_dataset
+from qpic.engine import evaluate, train_one_epoch, evaluate_hoi
+from qpic.models import build_model
 
 
 def get_args_parser():
@@ -280,8 +288,41 @@ def main(args):
 
 
 if __name__ == '__main__':
+    # 注意：当QPIC作为主模块时，请将导入包的代码改成import .datasets;当QPIC作为子模块时，请将导入包的代码改成import qpic.datasets
+    # 注意：QPIC作为子模块，需要在主模块中设置CUDA_VISIBLE_DEVICES，记得把下面两行代码注释掉
+    import os
+    os.environ['CUDA_VISIBLE_DEVICES'] = "0"
+
     parser = argparse.ArgumentParser('DETR training and evaluation script', parents=[get_args_parser()])
     args = parser.parse_args()
+
+    # for training debug
+    # args.pretrained = "params/detr-r50-pre-hico.pth"
+    # args.output_dir = "checkpoints/hicodet/qpic_resnet50_hico_20241010130000"
+    # args.hoi = True
+    # args.dataset_file = "hico"
+    # args.hoi_path = "/mnt/nvme1/dengkunyuan/HICO-DET/hico_20160224_det"
+    # args.num_obj_classes = 80
+    # args.num_verb_classes = 117
+    # args.backbone = "resnet50"
+    # args.batch_size = 2
+    # args.set_cost_bbox = 2.5
+    # args.set_cost_giou = 1
+    # args.bbox_loss_coef = 2.5
+    # args.giou_loss_coef = 1
+
+    # for test debug
+    # args.pretrained = "params/qpic_resnet50_hico.pth"
+    # args.output_dir = "checkpoints/hicodet/qpic_resnet50_hico_20241010130000"
+    # args.hoi = True
+    # args.dataset_file = "hico"
+    # args.hoi_path = "/mnt/nvme1/dengkunyuan/HICO-DET/hico_20160224_det"
+    # args.num_obj_classes = 80
+    # args.num_verb_classes = 117
+    # args.backbone = "resnet50"
+    # args.batch_size = 8
+    # args.eval = True
+
     if args.output_dir:
         Path(args.output_dir).mkdir(parents=True, exist_ok=True)
     main(args)

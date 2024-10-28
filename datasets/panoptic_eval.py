@@ -8,6 +8,10 @@
 import json
 import os
 
+# # QPIC is running as the main module.
+# import util.misc as utils
+
+# QPIC is running as a submodule.
 import qpic.util.misc as utils
 
 try:

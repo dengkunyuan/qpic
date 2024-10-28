@@ -18,6 +18,14 @@ import itertools
 
 import torch
 
+# # QPIC is running as the main module.
+# import util.misc as utils
+# from datasets.coco_eval import CocoEvaluator
+# from datasets.panoptic_eval import PanopticEvaluator
+# from datasets.hico_eval import HICOEvaluator
+# from datasets.vcoco_eval import VCOCOEvaluator
+
+# QPIC is running as a submodule.
 import qpic.util.misc as utils
 from qpic.datasets.coco_eval import CocoEvaluator
 from qpic.datasets.panoptic_eval import PanopticEvaluator

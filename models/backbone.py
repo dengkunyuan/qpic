@@ -17,8 +17,12 @@ from torch import nn
 from torchvision.models._utils import IntermediateLayerGetter
 from typing import Dict, List
 
-from qpic.util.misc import NestedTensor, is_main_process
+# # QPIC is running as the main module.
+# from util.misc import NestedTensor, is_main_process
+# from .position_encoding import build_position_encoding
 
+# QPIC is running as a submodule.
+from qpic.util.misc import NestedTensor, is_main_process
 from qpic.models.position_encoding import build_position_encoding
 
 

@@ -12,8 +12,11 @@ import math
 import torch
 from torch import nn
 
-from qpic.util.misc import NestedTensor
+# # QPIC is running as the main module.
+# from util.misc import NestedTensor
 
+# QPIC is running as a submodule.
+from qpic.util.misc import NestedTensor
 
 class PositionEmbeddingSine(nn.Module):
     """
