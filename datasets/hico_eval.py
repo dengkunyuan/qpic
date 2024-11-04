@@ -40,6 +40,7 @@ class HICOEvaluator():
 
                 hois = [{'subject_id': subject_id, 'object_id': object_id, 'category_id': category_id, 'score': score} for
                         subject_id, object_id, category_id, score in zip(subject_ids, object_ids, verb_labels, hoi_scores)]
+                # 其实common HOI检测中，预测结果中hoi score的范围也通常不超过0.9，而IL HOI检测中，范围不超过0.8
                 hois.sort(key=lambda k: (k.get('score', 0)), reverse=True)
                 hois = hois[:self.max_hois]
             else:
